@@ -145,8 +145,6 @@ object SparkBuild extends PomBuild {
     scalacOptions <+= target.map(t => "-P:genjavadoc:out=" + (t / "java")))
 
   lazy val sharedSettings = sparkGenjavadocSettings ++ Seq (
-    exportJars in Compile := true,
-    exportJars in Test := false,
     javaHome := sys.env.get("JAVA_HOME")
       .orElse(sys.props.get("java.home").map { p => new File(p).getParentFile().getAbsolutePath() })
       .map(file),
